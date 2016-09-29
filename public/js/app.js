@@ -2,6 +2,7 @@
   //initialize variables
     var startButton = $('#start');
     var seconds = $('#seconds');
+    var minutes = $('#minutes');
   //main functionality
     startButton.on('click', countdown);
 
@@ -9,9 +10,20 @@
     function countdown(){
       var secondsText = seconds.text();
       var secondTextAsNumber = parseInt(secondsText);
+      var minutesText = minutes.text();
+      var minutesTextAsNumber = parseInt(minutesText);
       // console.log(typeof secondsText);
       // console.log(typeof secondTextAsNumber)
+      if(minutesTextAsNumber === 0 && secondTextAsNumber === 0){
+        //stop!
+        return; //temporary stop
+      }
       if(secondTextAsNumber ===  0) {
+        if(minutesTextAsNumber !== 0) {
+        var decreasedMinutesAsNumberByOne = minutesTextAsNumber - 1;
+        var padMinutesTextAsNumber = pad(decreasedMinutesAsNumberByOne);
+        minutes.text(padMinutesTextAsNumber);
+      }
         seconds.text("59");
         //then change secondsText to 59
       } else {
