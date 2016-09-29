@@ -3,6 +3,7 @@
     var startButton = $('#start');
     var seconds = $('#seconds');
     var minutes = $('#minutes');
+    var breakButton = $('#break');
     var timerInterval;
   //main functionality
     startButton.on('click', startTimer);
@@ -22,7 +23,12 @@
       // console.log(typeof secondTextAsNumber)
       if(minutesTextAsNumber === 0 && secondTextAsNumber === 0){
         //stop!
-        return; //temporary stop
+        clearInterval(timerInterval); //this will stop the timer
+        //disable the start button
+        startButton.attr('disabled', true);
+        //unhide the break button
+        breakButton.show();
+        return;
       }
       if(secondTextAsNumber ===  0) {
         if(minutesTextAsNumber !== 0) {
